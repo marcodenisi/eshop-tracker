@@ -110,3 +110,18 @@ type EuGame struct {
 	AddOnContentB                    bool        `json:"add_on_content_b,omitempty"`
 	DlcShownB                        bool        `json:"dlc_shown_b,omitempty"`
 }
+
+// EncodeEuGame takes a game and returns its byte slice representation
+func EncodeEuGame(game EuGame) ([]byte, error) {
+	return json.Marshal(game)
+}
+
+// DecodeEuGame unmarshal the input byte slice into an EuGame object
+func DecodeEuGame(obj []byte) (*EuGame, error) {
+	var game EuGame
+	err := json.Unmarshal(obj, &game)
+	if err != nil {
+		return nil, err
+	}
+	return &game, nil
+}
